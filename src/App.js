@@ -5,9 +5,19 @@ function App() {
   return (
     <div className="container my-4">
       <h1 className="text-center">ToDos App</h1>
-      <main>
-        <Todos />
-      </main>
+
+      <Todos />
+      <p className="mt-5">
+        Icons made by{" "}
+        <a href="https://www.flaticon.com/authors/becris" title="Becris">
+          Becris
+        </a>{" "}
+        from{" "}
+        <a href="https://www.flaticon.com/" title="Flaticon">
+          {" "}
+          www.flaticon.com
+        </a>
+      </p>
     </div>
   )
 }

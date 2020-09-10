@@ -62,7 +62,7 @@ const Todos = () => {
     return true
   })
   return (
-    <>
+    <main>
       <h2 className="text-center">
         Ma liste de tâches ({completedCount} / {todos.length})
       </h2>
@@ -73,7 +73,7 @@ const Todos = () => {
         toggleCompleteTodo={toggleCompleteTodo}
       />
       <AddTodoForm addTodo={addTodo} setFilter={setFilter} />
-    </>
+    </main>
   )
 }
 
