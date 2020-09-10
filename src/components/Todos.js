@@ -56,7 +56,7 @@ const Todos = () => {
     if (filter === "completed") {
       return el.isCompleted
     }
-    if (filter !== "notcompleted") {
+    if (filter === "notcompleted") {
       return !el.isCompleted
     }
     return true
