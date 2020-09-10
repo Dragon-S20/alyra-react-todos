@@ -1,6 +1,7 @@
 import React, { useState } from "react"
-import Todo from "./Todo"
+import TodosList from "./TodosList"
 import AddTodoForm from "./AddTodoForm"
+import SelectTodos from "./SelectTodos"
 import { v4 as uuidv4 } from "uuid"
 
 const initialTodos = [
@@ -23,6 +24,7 @@ const initialTodos = [
 
 const Todos = () => {
   const [todos, setTodos] = useState(initialTodos)
+  const [filter, setFilter] = useState("all")
 
   const addTodo = (text) => {
     const newTodo = {
@@ -49,22 +51,28 @@ const Todos = () => {
   }
 
   const completedCount = todos.filter((el) => el.isCompleted).length
+
+  const displayedTodos = todos.filter((el) => {
+    if (filter === "completed") {
+      return el.isCompleted
+    }
+    if (filter !== "notcompleted") {
+      return !el.isCompleted
+    }
+    return true
+  })
   return (
     <>
       <h2 className="text-center">
         Ma liste de tâches ({completedCount} / {todos.length})
       </h2>
-      {todos.map((el) => {
-        return (
-          <Todo
-            key={el.id}
-            todo={el}
-            deleteTodo={deleteTodo}
-            toggleCompleteTodo={toggleCompleteTodo}
-          />
-        )
-      })}
-      <AddTodoForm addTodo={addTodo} />
+      <SelectTodos filter={filter} setFilter={setFilter} />
+      <TodosList
+        todos={displayedTodos}
+        deleteTodo={deleteTodo}
+        toggleCompleteTodo={toggleCompleteTodo}
+      />
+      <AddTodoForm addTodo={addTodo} setFilter={setFilter} />
     </>
   )
 }

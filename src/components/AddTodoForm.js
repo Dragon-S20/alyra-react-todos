@@ -1,11 +1,12 @@
 import React from "react"
 
 const AddTodoForm = (props) => {
-  const { addTodo } = props
+  const { addTodo, setFilter } = props
   const handleFormSubmit = (event) => {
     event.preventDefault()
     const newTodoText = event.target.elements.todo.value
     addTodo(newTodoText)
+    setFilter((filter) => (filter === "completed" ? "all" : filter))
     event.target.reset()
   }
   return (
